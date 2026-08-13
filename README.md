@@ -3,19 +3,19 @@
 
 I first verified that virtualization was enabled on the host computer and prepared Microsoft Hyper-V for the lab.
 
-![Virtualization Enabled](screenshots/01-hyperv-setup/01-Virtualization-Enabled.png)
+![Virtualization Enabled](screenshots/01 hyperv setup/01-Virtualization-Enabled.png)
 
 I created an internal Hyper-V virtual switch to provide a dedicated network for the home lab.
 
-![Internal Virtual Switch](screenshots/01-hyperv-setup/07-LAB-Internal-Virtual-Switch.png)
+![Internal Virtual Switch](screenshots/01 hyperv- setup/07-LAB-Internal-Virtual-Switch.png)
 
 I then created a Generation 2 virtual machine named **DC01** and configured the required memory, processor, storage and network settings.
 
-![DC01 VM](screenshots/01-hyperv-setup/04-DC01-VM-Name.png)
+![DC01 VM](screenshots/01 hyperv setup/04-DC01-VM-Name.png)
 
 Windows Server 2022 Standard Evaluation with Desktop Experience was installed on DC01.
 
-![Windows Server 2022](screenshots/01-hyperv-setup/13-Windows-Server-2022-Edition-Selection.png)
+![Windows Server 2022](screenshots/01 hyperv setup/13-Windows-Server-2022-Edition-Selection.png)
 
 ---
 
