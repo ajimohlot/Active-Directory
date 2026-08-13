@@ -1,13 +1,3 @@
-# Active Directory Lab
+Get-NetFirewallRule -DisplayName "File and Printer Sharing (Echo Request - ICMPv4-In)" | Where-object {$_.Profile -match "Public"} | Enable-NetFirewallRule
 
-This repository contains my Active Directory home lab.
-
-## Planned Projects
-
-- Install Windows Server
-- Configure Domain Controller
-- Join Client Computers
-- Create Users
-- Create Groups
-- Configure Group Policy
-- Reset Passwords
+Get-NetFirewallRule -DisplayName "*Echo Request*" | Where-Object {$_.Direction -eq "Inbound" -and $_.profile -match "Public"} | Select-Object DisplayName, Enabled, Profile, Direction, Action
