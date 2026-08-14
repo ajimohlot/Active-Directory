@@ -175,3 +175,66 @@ I enabled the appropriate ICMP firewall rule on the host to permit inbound echo 
 A final ping test from DC01 to the host completed successfully, confirming bidirectional communication across the internal Hyper-V network.
 
 ![DC01 to Host Ping Successful](screenshots/02%20network%20configuration/34-DC01-to-Host-Ping-Successful.jpg)
+
+
+---
+
+## Active Directory Domain Services Deployment
+
+With network connectivity established, I installed Active Directory Domain Services (AD DS) on DC01 and promoted the server to a domain controller.
+
+I created a new Active Directory forest for the `ajimohlab.local` domain, completed the prerequisite checks, promoted DC01, and verified that the domain and supporting DNS infrastructure were functioning correctly.
+
+### 1. Active Directory Domain Services Installation
+
+I selected and installed the Active Directory Domain Services role on DC01 using Server Manager.
+
+![AD DS Installation Confirmation](screenshots/03%20active%20directory/ADDS_03_Installation_Confirmation.jpg)
+
+### 2. AD DS Installation Completed
+
+The Active Directory Domain Services role was installed successfully, allowing the server to proceed to domain controller promotion.
+
+![AD DS Installation Successful](screenshots/03%20active%20directory/ADDS_04_ADDS_Installation_Successful.jpg)
+
+### 3. New Active Directory Forest Configuration
+
+I selected the option to create a new forest and configured `ajimohlab.local` as the root domain for the lab environment.
+
+![New Forest Configuration](screenshots/03%20active%20directory/ADDS_05_New_Forest_Configuration.jpg)
+
+### 4. Domain Controller Configuration Review
+
+Before beginning the promotion, I reviewed the Active Directory Domain Services configuration to confirm the selected deployment settings.
+
+![AD DS Configuration Review](screenshots/03%20active%20directory/ADDS_08_Configuration_Review.jpg)
+
+### 5. Prerequisite Check Passed
+
+The prerequisite check completed successfully, confirming that DC01 was ready to be promoted to a domain controller.
+
+![AD DS Prerequisites Check Passed](screenshots/03%20active%20directory/ADDS_09_Prerequisites_Check_Passed.jpg)
+
+### 6. Domain Login Verification
+
+After the server restarted, I successfully logged in using the `AJIMOHLAB` domain context, confirming that the domain controller promotion had completed.
+
+![AJIMOHLAB Domain Login](screenshots/03%20active%20directory/ADDS_10_AJIMOHLAB_Domain_Login.jpg)
+
+### 7. Domain Controller Verification
+
+I verified that DC01 was operating as a domain controller within the newly created Active Directory domain.
+
+![DC01 Domain Verification](screenshots/03%20active%20directory/ADDS_11_DC01_Domain_Verification.jpg)
+
+### 8. Active Directory Users and Computers Verification
+
+I opened Active Directory Users and Computers (ADUC) and confirmed that the domain structure was available and being managed by DC01.
+
+![DC01 ADUC Verification](screenshots/03%20active%20directory/ADDS_12_DC01_ADUC_Verification.jpg)
+
+### 9. DNS Forward Lookup Zone Verification
+
+I verified that the DNS forward lookup zone associated with the Active Directory domain had been created successfully.
+
+![DNS Forward Lookup Zone](screenshots/03%20active%20directory/ADDS_13_DNS_Forward_Lookup_Zone.jpg)
