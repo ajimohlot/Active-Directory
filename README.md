@@ -140,13 +140,13 @@ I inspected the ICMP firewall rules on DC01 to determine whether Windows Firewal
 
 ![DC01 ICMP Firewall Rules Before](screenshots/02%20network%20configuration/28-DC01-ICMP-Firewall-Rules-Before.jpg)
 
-### 7. DC01 ICMP Firewall Rule Enabled
+#### 7. DC01 ICMP Firewall Rule Enabled
 
 I enabled the required ICMP firewall rule on DC01 to allow inbound echo requests.
 
-![DC01 ICMP Firewall Rule Enabled](screenshots/02 network configuration/29-DC01-ICMP-Firewall-Rule-Enabled.png.jpg)
+![DC01 ICMP Firewall Rule Enabled](screenshots/02%20network%20configuration/29-DC01-ICMP-Firewall-Rule-Enabled.jpg)
 
-### 8. Host-to-DC01 Connectivity Restored
+#### 8. Host-to-DC01 Connectivity Restored
 
 After modifying the firewall configuration, I repeated the ping test from the host and confirmed successful communication with DC01.
 
@@ -188,9 +188,9 @@ I attempted to change the profile directly:
 Set-NetConnectionProfile -InterfaceAlias "vEthernet (Home Lab-Internal)" -NetworkCategory Private
 ```
 
-*(screenshots/02 network configuration/34B-Network-Profile-Change-Failed.jpg)*
+![Network Profile Change Failed](screenshots/02%20network%20configuration/34B-Network-Profile-Change-Failed.jpg))
 
-This failed with a permission-denied error, even when run elevated:
+This failed with a permission-denied error:
 
 > Set-NetConnectionProfile : Unable to set the NetworkCategory due to one of the following 
 > possible reasons: not running PowerShell elevated; the NetworkCategory cannot be changed 
@@ -201,7 +201,7 @@ This failed with a permission-denied error, even when run elevated:
 explicitly blocks manual changes to network category classification, overriding even an 
 elevated PowerShell session.
 
-*(screenshots/02 network configuration/35-HomeLab-Network-Profile-Verification.jpg)*
+![HomeLab Network Profile Verification](screenshots/02%20network%20configuration/35-HomeLab-Network-Profile-Verification.jpg)
 
 I confirmed via `Get-NetConnectionProfile` that the category remained `Public` after the 
 failed change attempt.
@@ -212,7 +212,7 @@ Rather than modify the Group Policy setting at this stage of the project, I adju
 firewall approach to explicitly target the **Public** profile — the profile the interface 
 was actually running under — instead of assuming it would be Private or Domain.
 
-*(screenshots/02 network configuration/36-Host-Public-ICMP-Rule-Disabled.jpg)*
+![Host Public ICMP Rule Disabled]( screenshots/02%20network%20configuration/36-Host-Public-ICMP-Rule-Disabled.jpg)
 
 This is a known limitation of the current setup: the internal lab network functions 
 correctly, but remains classified as Public rather than Private/Domain. Resolving the 
