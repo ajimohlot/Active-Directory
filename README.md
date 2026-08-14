@@ -176,6 +176,48 @@ A final ping test from DC01 to the host completed successfully, confirming bidir
 
 ![DC01 to Host Ping Successful](screenshots/02%20network%20configuration/34-DC01-to-Host-Ping-Successful.jpg)
 
+## 13. Network Category Investigation
+
+Although ICMP connectivity was now working, I investigated why the internal lab network 
+was still classified as a **Public** network profile rather than **Private** — the profile 
+you'd expect for an isolated, trusted internal switch.
+
+I attempted to change the profile directly:
+
+```powershell
+Set-NetConnectionProfile -InterfaceAlias "vEthernet (Home Lab-Internal)" -NetworkCategory Private
+```
+
+*(screenshot: 34B-Network-Profile-Change-Failed)*
+
+This failed with a permission-denied error, even when run elevated:
+
+> Set-NetConnectionProfile : Unable to set the NetworkCategory due to one of the following 
+> possible reasons: not running PowerShell elevated; the NetworkCategory cannot be changed 
+> from 'DomainAuthenticated'; user initiated changes to NetworkCategory are being prevented 
+> due to the Group Policy setting 'Network List Manager Policies'.
+
+**Root Cause:** a local/effective Group Policy setting (`Network List Manager Policies`) 
+explicitly blocks manual changes to network category classification, overriding even an 
+elevated PowerShell session.
+
+*(screenshot: 35-HomeLab-Network-Profile-Verification)*
+
+I confirmed via `Get-NetConnectionProfile` that the category remained `Public` after the 
+failed change attempt.
+
+## 14. Working Within the Public Profile
+
+Rather than modify the Group Policy setting at this stage of the project, I adjusted my 
+firewall approach to explicitly target the **Public** profile — the profile the interface 
+was actually running under — instead of assuming it would be Private or Domain.
+
+*(screenshot: 36-Host-Public-ICMP-Rule-Disabled)*
+
+This is a known limitation of the current setup: the internal lab network functions 
+correctly, but remains classified as Public rather than Private/Domain. Resolving the 
+underlying Group Policy restriction is listed as a follow-up item below.
+
 
 ---
 
@@ -250,6 +292,14 @@ The troubleshooting process involved checking client DNS configuration, DNS serv
 I performed an initial `nslookup` test to check DNS name resolution and determine whether the DNS server was responding correctly.
 
 ![Initial DNS Lookup Test](screenshots/04%20dns%20troubleshooting/DNS_02_NSLookup_Initial_Test.jpg)
+**Why this timeout appears:** `nslookup` attempts to resolve the *DNS server's own hostname* 
+via a reverse (PTR) lookup before displaying results — that's what populates the "Server:" 
+line at the top of its output. At this point in the project, no reverse lookup zone existed 
+yet, so that reverse lookup timed out, producing `Server: UnKnown` / `Address: ::1`. This is 
+purely cosmetic: the actual forward query for `dc01.ajimohlab.local` still completed 
+successfully against the same DNS server, which is why a correct answer appears immediately 
+below the timeout. This symptom disappeared on its own once the reverse lookup zone and PTR 
+record were created later in this project (see step 9-10).
 
 #### 2. Client DNS Configuration Diagnosis
 
@@ -349,17 +399,28 @@ Bidirectional communication between the host and DC01 was successfully establish
 
 ### DNS Resolution Issue
 
-**Problem:**  
-DNS queries initially experienced timeouts, including an IPv6-related lookup timeout.
+**Problem:**
+DNS queries initially returned `Server: UnKnown` / `Address: ::1` with a timeout message, 
+even though the actual name resolution succeeded.
 
-**Investigation:**  
-I reviewed the client DNS configuration, checked the DNS server listening addresses, tested connectivity to DNS port 53, performed an explicit DNS query, and carried out additional IPv4 and IPv6 resolution tests.
+**Investigation:**
+I reviewed the client's DNS configuration, checked the DNS server's listening addresses, 
+tested connectivity to port 53, and performed explicit queries with `resolve-dnsname` to 
+separate the DNS *service* from `nslookup`'s own behavior.
 
-**Resolution:**  
-The DNS configuration and network connectivity were systematically verified, allowing successful DNS name resolution to be confirmed.
+**Root Cause:**
+`nslookup` performs a reverse lookup of the DNS server's own address before displaying its 
+output. Since no reverse lookup zone existed yet at this stage, that reverse query timed out — 
+independent of whether the actual forward query succeeded. This made the DNS server look 
+broken when it was actually functioning correctly for forward resolution.
 
-**Result:**  
-The domain controller could be resolved correctly through DNS.
+**Resolution:**
+I confirmed forward resolution was working correctly throughout using `resolve-dnsname`, then 
+created the reverse lookup zone and PTR record (see below), which resolved the cosmetic 
+`nslookup` timeout as a side effect.
+
+**Result:**
+Both forward and reverse DNS resolution now complete cleanly with no timeout messages.
 
 ### Reverse DNS Resolution Issue
 
