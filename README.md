@@ -149,7 +149,7 @@ Windows Server 2022 was selected as the operating system for `DC01`, providing t
 ![Windows Server 2022 Edition Selection](screenshots/01%20hyperv%20setup/13-Windows-Server-2022-Edition-Selection.jpg)
 
 
-  - [2. Network Configuration and Connectivity Troubleshooting](#network-configuration-and-connectivity-troubleshooting)
+## 2. Network Configuration and Connectivity Troubleshooting
 
 After creating the Windows Server 2022 virtual machine, I configured the lab network and assigned static IP addresses to establish communication between the Windows host and the domain controller.
 
