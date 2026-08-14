@@ -144,7 +144,7 @@ I inspected the ICMP firewall rules on DC01 to determine whether Windows Firewal
 
 I enabled the required ICMP firewall rule on DC01 to allow inbound echo requests.
 
-![DC01 ICMP Firewall Rule Enabled](screenshots/02%20network%20configuration/29-DC01-ICMP-Firewall-Rule-Enabled.jpg)
+![DC01 ICMP Firewall Rule Enabled](screenshots/02 network configuration/29-DC01-ICMP-Firewall-Rule-Enabled.png.jpg)
 
 ### 8. Host-to-DC01 Connectivity Restored
 
