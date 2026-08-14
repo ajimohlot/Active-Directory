@@ -4,7 +4,7 @@
 
 This project demonstrates the deployment and configuration of a Windows Server 2022 Active Directory home lab using Hyper-V.
 
-The lab was built to gain hands-on experience with Windows Server administration, Active Directory Domain Services (AD DS), DNS, network configuration, and systematic troubleshooting.
+The lab was built to demonstrate hands-on skills in Windows Server administration, Active Directory Domain Services (AD DS), DNS, network configuration, and systematic troubleshooting.
 
 During the project, I configured a Windows Server 2022 virtual machine as a domain controller, assigned a static IP address, installed Active Directory Domain Services, created a new Active Directory forest, and configured DNS services.
 
@@ -33,7 +33,7 @@ I also encountered and resolved network connectivity and DNS-related issues, inc
 - Configure DNS reverse lookup and a PTR record
 - Validate the final Active Directory and DNS configuration
 
-- ## Project Implementation
+## Project Implementation
 
 The project was completed in four main stages:
 
@@ -50,7 +50,13 @@ I first verified that hardware virtualization was enabled on the host computer a
 
 I then created the lab's internal virtual switch and configured a Windows Server 2022 virtual machine named `DC01`. The virtual machine was allocated the required memory, processor, storage, and network resources before Windows Server 2022 was installed.
 
-### Key tasks completed
+### Key tasks completed- Verified virtualization support
+- Enabled and configured Hyper-V
+- Created an internal Hyper-V virtual switch
+- Created the `DC01` virtual machine
+- Configured VM memory, processor, and virtual disk
+- Installed Windows Server 2022
+
 
 ### Hyper-V Setup Evidence
 
@@ -89,10 +95,3 @@ The completed virtual machine configuration was reviewed before installing the s
 Windows Server 2022 was selected as the operating system for `DC01`, providing the platform for Active Directory Domain Services and DNS.
 
 ![Windows Server 2022 Edition Selection](screenshots/01%20hyperv%20setup/13-Windows-Server-2022-Edition-Selection.jpg)
-
-- Verified virtualization support
-- Enabled and configured Hyper-V
-- Created an internal Hyper-V virtual switch
-- Created the `DC01` virtual machine
-- Configured VM memory, processor, and virtual disk
-- Installed Windows Server 2022
