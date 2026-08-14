@@ -465,8 +465,8 @@ independent of whether the actual forward query succeeded. This made the DNS ser
 broken when it was actually functioning correctly for forward resolution.
 
 **Resolution:**
-I confirmed forward resolution was working correctly throughout using `resolve-dnsname`, then 
-created the reverse lookup zone and PTR record (see below), which resolved the cosmetic 
+I confirmed forward resolution was working correctly throughout using `Resolve-DnsName`, then
+created the reverse lookup zone and PTR record, which resolved the cosmetic
 `nslookup` timeout as a side effect.
 
 **Result:**
@@ -505,7 +505,7 @@ Reverse DNS resolution succeeded, and final `dcdiag` DNS diagnostic testing pass
 - TCP/UDP port 53 connectivity testing
 - Systematic troubleshooting and verification
 
-- ## Tools and Technologies
+## Tools and Technologies
 
 | Technology | Purpose |
 |---|---|
@@ -542,10 +542,7 @@ The project strengthened my practical experience in Windows Server administratio
 
 ## Known Limitations / Follow-Up Items
 
-- The internal lab network remains classified under the **Public** firewall profile rather 
-  than Private, due to a Group Policy restriction I did not resolve in this phase of the 
-  project. Locating and adjusting the specific `Network List Manager Policies` setting is a 
-  planned next step.
+- The internal lab network remains classified under the **Public** firewall profile rather than Private. An attempt to change the profile using `Set-NetConnectionProfile` returned a permission-denied error. Further investigation into the applicable network policies and permissions is planned as a follow-up task.
 
 ## Lessons Learned
 
@@ -560,6 +557,8 @@ Most importantly, this project gave me practical experience deploying, configuri
 ## Project Demonstration
 
 I recorded the complete implementation and troubleshooting process as a four-part video series. The videos demonstrate the configuration steps, issues encountered, troubleshooting process, and final verification of the Windows Server 2022 Active Directory home lab.
+
+> **Video editing note:** The demonstration videos were edited to remove waiting periods, repetitive actions, restarts, and other non-essential footage. As a result, the system clock may appear to jump forward between some sections. The technical steps are presented in the order they were performed.
 
 ### Part 1 – Hyper-V and Windows Server Setup
 
