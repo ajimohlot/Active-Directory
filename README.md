@@ -95,3 +95,83 @@ The completed virtual machine configuration was reviewed before installing the s
 Windows Server 2022 was selected as the operating system for `DC01`, providing the platform for Active Directory Domain Services and DNS.
 
 ![Windows Server 2022 Edition Selection](screenshots/01%20hyperv%20setup/13-Windows-Server-2022-Edition-Selection.jpg)
+
+
+---
+## Network Configuration and Connectivity Troubleshooting
+
+After creating the Windows Server 2022 virtual machine, I configured the lab network and assigned static IP addresses to establish communication between the Windows host and the domain controller.
+
+During connectivity testing, I encountered ICMP communication failures in both directions. I investigated the Windows Firewall configuration, identified the relevant ICMP rules and profile settings, enabled the required rules, and verified successful connectivity.
+
+### 1. Server Renamed to DC01
+
+I renamed the Windows Server virtual machine to `DC01` in preparation for its role as the domain controller.
+
+![Server renamed to DC01](screenshots/02%20network%20configuration/16-Rename-Server-DC01.jpg)
+
+### 2. Host Network Configuration
+
+I configured the host-side adapter for the internal Hyper-V network to provide communication between the Windows host and DC01.
+
+![LAB Internal Host IP Configuration](screenshots/02%20network%20configuration/18-LAB-Internal-Host-IP-Configuration.jpg)
+
+### 3. DC01 Static IP Configuration
+
+I assigned a static IPv4 configuration to DC01 to provide a consistent network address for Active Directory and DNS services.
+
+![DC01 Static IP Configuration](screenshots/02%20network%20configuration/19-DC01-Static-IP-Configuration.jpg)
+
+### 4. IP Configuration Verification
+
+I verified the network configuration on DC01 after assigning the static IP settings.
+
+![DC01 IP Configuration Verification](screenshots/02%20network%20configuration/20-DC01-IPConfig-Verification.jpg)
+
+### 5. Initial Host-to-DC01 Connectivity Failure
+
+An initial ping test from the host computer to DC01 failed, indicating that further network troubleshooting was required.
+
+![Host to DC01 Ping Failed](screenshots/02%20network%20configuration/21-Host-to-DC01-Ping-Failed.jpg)
+
+### 6. DC01 Firewall Investigation
+
+I inspected the ICMP firewall rules on DC01 to determine whether Windows Firewall was preventing ping traffic.
+
+![DC01 ICMP Firewall Rules Before](screenshots/02%20network%20configuration/28-DC01-ICMP-Firewall-Rules-Before.jpg)
+
+### 7. DC01 ICMP Firewall Rule Enabled
+
+I enabled the required ICMP firewall rule on DC01 to allow inbound echo requests.
+
+![DC01 ICMP Firewall Rule Enabled](screenshots/02%20network%20configuration/29-DC01-ICMP-Firewall-Rule-Enabled.jpg)
+
+### 8. Host-to-DC01 Connectivity Restored
+
+After modifying the firewall configuration, I repeated the ping test from the host and confirmed successful communication with DC01.
+
+![Host to DC01 Ping Success](screenshots/02%20network%20configuration/30-Host-to-DC01-Ping-Success.jpg)
+
+### 9. Reverse Connectivity Test Failed
+
+I then tested connectivity in the opposite direction. The ping from DC01 to the host initially failed, showing that communication was not yet working bidirectionally.
+
+![DC01 to Host Ping Failed](screenshots/02%20network%20configuration/31-DC01-to-Host-Ping-Failed.jpg)
+
+### 10. Host Firewall Profile Investigation
+
+Further investigation identified a firewall rule/profile mismatch on the Windows host.
+
+![Host ICMP Rule Profile Mismatch](screenshots/02%20network%20configuration/32-Host-ICMP-Rule-Profile-Mismatch.jpg)
+
+### 11. Host ICMP Firewall Rule Enabled
+
+I enabled the appropriate ICMP firewall rule on the host to permit inbound echo requests from DC01.
+
+![Host ICMP Firewall Rule Enabled](screenshots/02%20network%20configuration/33-Host-ICMP-Firewall-Rule-Enabled.jpg)
+
+### 12. Bidirectional Connectivity Confirmed
+
+A final ping test from DC01 to the host completed successfully, confirming bidirectional communication across the internal Hyper-V network.
+
+![DC01 to Host Ping Successful](screenshots/02%20network%20configuration/34-DC01-to-Host-Ping-Successful.jpg)
