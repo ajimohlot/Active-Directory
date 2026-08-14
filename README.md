@@ -238,3 +238,231 @@ I opened Active Directory Users and Computers (ADUC) and confirmed that the doma
 I verified that the DNS forward lookup zone associated with the Active Directory domain had been created successfully.
 
 ![DNS Forward Lookup Zone](screenshots/03%20active%20directory/ADDS_13_DNS_Forward_Lookup_Zone.jpg)
+
+## DNS Troubleshooting and Resolution
+
+After deploying Active Directory Domain Services, I tested DNS functionality to verify that name resolution was operating correctly.
+
+The troubleshooting process involved checking client DNS configuration, DNS server settings, port 53 connectivity, explicit DNS queries, IPv4 and IPv6 resolution, reverse DNS configuration, and final domain controller diagnostics.
+
+#### 1. Initial DNS Lookup Test
+
+I performed an initial `nslookup` test to check DNS name resolution and determine whether the DNS server was responding correctly.
+
+![Initial DNS Lookup Test](screenshots/04%20dns%20troubleshooting/DNS_02_NSLookup_Initial_Test.jpg)
+
+#### 2. Client DNS Configuration Diagnosis
+
+I reviewed the client's network and DNS configuration to confirm that it was using the correct DNS server.
+
+![Client DNS Configuration Diagnosis](screenshots/04%20dns%20troubleshooting/DNS_03_Client_Configuration_Diagnosis.jpg)
+
+#### 3. IPv6 DNS Lookup Timeout
+
+Further testing with `nslookup` produced an IPv6-related timeout, indicating that additional DNS investigation was required.
+
+![NSLookup IPv6 Timeout](screenshots/04%20dns%20troubleshooting/DNS_05_NSLookup_IPv6_Timeout.jpg)
+
+#### 4. DNS Server Listening Addresses
+
+I checked the DNS server listening configuration to verify that the DNS service was listening on the required network interfaces and addresses.
+
+![DNS Server Listening Addresses](screenshots/04%20dns%20troubleshooting/DNS_06_Server_Listening_Addresses.jpg)
+
+#### 5. DNS Port 53 Connectivity Test
+
+I tested connectivity to DNS port 53 to confirm that the DNS server was reachable and that the service port was accessible.
+
+![DNS Port 53 Connectivity Test](screenshots/04%20dns%20troubleshooting/DNS_07_Port_53_Connectivity_Test.jpg)
+
+#### 6. Explicit DNS Query
+
+I performed an explicit DNS query against the DNS server to isolate the DNS service from the client's default resolver configuration and verify that the server could answer the query directly.
+
+![Explicit DNS Query](screenshots/04%20dns%20troubleshooting/DNS_08_Explicit_DNS_Query.png.jpg)
+
+#### 7. IPv6 DNS Resolution Test
+
+I performed an additional DNS resolution test involving IPv6 as part of the troubleshooting process and observed the DNS response.
+
+![IPv6 DNS Resolution Test](screenshots/04%20dns%20troubleshooting/DNS_09_IPv6_DNS_Resolution_Test.png.jpg)
+
+#### 8. Reverse DNS Lookup Failure
+
+I then tested reverse DNS resolution. The lookup failed because a reverse lookup zone and corresponding PTR record had not yet been configured.
+
+![Reverse DNS Lookup Failed](screenshots/04%20dns%20troubleshooting/DNS_10_Reverse_Lookup_Failed.jpg)
+
+#### 9. Reverse Lookup Zone Created
+
+I created a reverse lookup zone in DNS Manager to support IP-address-to-hostname resolution.
+
+![Reverse Lookup Zone Created](screenshots/04%20dns%20troubleshooting/DNS_11_Reverse_Lookup_Zone_Created.jpg)
+
+#### 10. PTR Record Created
+
+I created the required Pointer (PTR) record to map the domain controller's IP address back to its hostname.
+
+![PTR Record Created](screenshots/04%20dns%20troubleshooting/DNS_12_PTR_Record_Created.jpg)
+
+#### 11. IPv4 DNS Resolution Verified
+
+I repeated the `nslookup` test using IPv4 and confirmed that DNS resolution was working successfully.
+
+![IPv4 DNS Resolution Success](screenshots/04%20dns%20troubleshooting/DNS_13_NSLookup_IPv4_Success.jpg)
+
+#### 12. TCP and UDP Port 53 Verification
+
+I verified DNS communication over both TCP and UDP port 53 to confirm that the required DNS transport protocols were functioning correctly.
+
+![TCP UDP Port 53 Verification](screenshots/04%20dns%20troubleshooting/DNS_14_TCP_UDP_Port_53_Verification.png.jpg)
+
+#### 13. Forward DNS Resolution Verified
+
+I performed a final forward resolution test and confirmed that the domain controller's hostname resolved successfully to the expected IPv4 address.
+
+![Forward DNS Resolution Successful](screenshots/04%20dns%20troubleshooting/DNS_15_Forward_Resolution_Successful.jpg)
+
+#### 14. Final DNS Health Verification
+
+Finally, I used `dcdiag` to perform DNS diagnostic testing on the domain controller. The DNS tests passed, providing final verification that the DNS service was functioning correctly.
+
+![DCDiag DNS Passed](screenshots/04%20dns%20troubleshooting/DNS_16_DCDiag_DNS_Passed.jpg)
+
+## Troubleshooting Summary
+
+This project included several real troubleshooting scenarios that required systematic diagnosis rather than simply following the initial configuration steps.
+
+### ICMP Connectivity Issue
+
+**Problem:**  
+The Windows host and DC01 were initially unable to communicate successfully using ICMP ping.
+
+**Investigation:**  
+I verified the IP configuration, tested connectivity in both directions, and reviewed Windows Firewall ICMP rules and their associated network profiles.
+
+**Resolution:**  
+I enabled the appropriate inbound ICMP firewall rules on both DC01 and the Windows host.
+
+**Result:**  
+Bidirectional communication between the host and DC01 was successfully established.
+
+### DNS Resolution Issue
+
+**Problem:**  
+DNS queries initially experienced timeouts, including an IPv6-related lookup timeout.
+
+**Investigation:**  
+I reviewed the client DNS configuration, checked the DNS server listening addresses, tested connectivity to DNS port 53, performed an explicit DNS query, and carried out additional IPv4 and IPv6 resolution tests.
+
+**Resolution:**  
+The DNS configuration and network connectivity were systematically verified, allowing successful DNS name resolution to be confirmed.
+
+**Result:**  
+The domain controller could be resolved correctly through DNS.
+
+### Reverse DNS Resolution Issue
+
+**Problem:**  
+Forward DNS resolution worked, but reverse lookup of the domain controller's IP address failed.
+
+**Investigation:**  
+I identified that a reverse lookup zone and PTR record had not yet been configured.
+
+**Resolution:**  
+I created the reverse lookup zone and corresponding PTR record.
+
+**Result:**  
+Reverse DNS resolution succeeded, and final `dcdiag` DNS diagnostic testing passed.
+
+## Skills Demonstrated
+
+- Windows Server 2022 administration
+- Hyper-V configuration and virtual machine deployment
+- Active Directory Domain Services installation and configuration
+- Domain controller deployment
+- Active Directory forest creation
+- Active Directory Users and Computers administration
+- IPv4 and static IP configuration
+- Windows Firewall troubleshooting
+- ICMP connectivity troubleshooting
+- DNS configuration and troubleshooting
+- Forward and reverse DNS resolution
+- DNS reverse lookup zone configuration
+- PTR record creation
+- `ping`, `ipconfig`, `nslookup`, and `dcdiag` diagnostic tools
+- TCP/UDP port 53 connectivity testing
+- Systematic troubleshooting and verification
+
+- ## Tools and Technologies
+
+| Technology | Purpose |
+|---|---|
+| Windows 11 Pro | Host operating system |
+| Hyper-V | Virtualization platform |
+| Windows Server 2022 | Server operating system |
+| Active Directory Domain Services | Identity and domain services |
+| DNS Server | Name resolution |
+| Windows Firewall | Network traffic and ICMP rule management |
+| PowerShell | Configuration and troubleshooting |
+| Command Prompt | Network and DNS diagnostic testing |
+| Server Manager | Windows Server role and feature management |
+| DNS Manager | Forward and reverse DNS administration |
+| Active Directory Users and Computers | Active Directory administration |
+| GitHub | Project documentation and evidence |
+
+## Project Outcome
+
+The completed home lab provides a functional Windows Server 2022 Active Directory environment running on Hyper-V.
+
+By the end of the project:
+
+- DC01 was successfully deployed as a Windows Server 2022 virtual machine.
+- A static IPv4 network configuration was established.
+- Bidirectional connectivity between the host and domain controller was verified.
+- Active Directory Domain Services was successfully installed.
+- DC01 was promoted to a domain controller.
+- A new Active Directory forest and domain were created.
+- Forward DNS resolution was verified.
+- Reverse DNS resolution was configured using a reverse lookup zone and PTR record.
+- Final DNS diagnostic testing completed successfully.
+
+The project strengthened my practical experience in Windows Server administration, Active Directory, networking, DNS, firewall configuration, and structured troubleshooting.
+
+## Lessons Learned
+
+This project reinforced the importance of using a structured troubleshooting process rather than making configuration changes without first identifying the cause of a problem.
+
+The ICMP connectivity issue demonstrated how Windows Firewall rules and network profiles can affect communication even when IP addressing is configured correctly.
+
+The DNS troubleshooting process also showed the importance of testing each layer separately. Verifying the DNS server's listening configuration, port 53 connectivity, forward resolution, reverse resolution, and final domain controller diagnostics made it possible to isolate and resolve each issue systematically.
+
+Most importantly, this project gave me practical experience deploying, configuring, testing, and troubleshooting an Active Directory environment rather than only studying the concepts theoretically.
+
+## Project Demonstration
+
+I recorded the complete implementation and troubleshooting process as a four-part video series. The videos demonstrate the configuration steps, issues encountered, troubleshooting process, and final verification of the Windows Server 2022 Active Directory home lab.
+
+### Part 1 – Hyper-V and Windows Server Setup
+
+Covers virtualization verification, Hyper-V configuration, virtual networking, DC01 virtual machine creation, and Windows Server 2022 installation.
+
+▶️ [Watch Part 1 on YouTube](https://youtu.be/XZWxVUwlBLY)
+
+### Part 2 – Network and Firewall Troubleshooting
+
+Covers static IP configuration, connectivity testing, ICMP failures, Windows Firewall investigation, firewall rule and network profile troubleshooting, and successful bidirectional communication.
+
+▶️ [Watch Part 2 on YouTube](https://youtu.be/MHAAaAqRegg)
+
+### Part 3 – Active Directory Domain Services Deployment
+
+Covers AD DS installation, creation of the `ajimohlab.local` forest, domain controller promotion, domain verification, ADUC verification, and DNS integration.
+
+▶️ [Watch Part 3 on YouTube](https://youtu.be/-jAFozUGix0)
+
+### Part 4 – DNS Troubleshooting and Verification
+
+Covers DNS testing and troubleshooting, DNS port 53 connectivity, explicit DNS queries, IPv4 and IPv6 testing, reverse lookup zone and PTR record configuration, forward and reverse resolution, and final DNS health verification.
+
+▶️ [Watch Part 4 on YouTube](https://youtu.be/aSFSaEkqp-U)
