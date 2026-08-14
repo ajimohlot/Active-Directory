@@ -1,4 +1,57 @@
+
 # Windows Server 2022 Active Directory Home Lab
+
+
+## 📋 Table of Contents
+
+- [Project Overview](#project-overview)
+- [Lab Network Diagram](#lab-network-diagram)
+- [Lab Environment](#lab-environment)
+- [Project Objectives](#project-objectives)
+- [Project Implementation](#project-implementation)
+  - [1. Hyper-V and Virtual Machine Setup](#1-hyper-v-and-virtual-machine-setup)
+  - [2. Network Configuration and Connectivity Troubleshooting](#2-network-configuration-and-connectivity-troubleshooting)
+  - [3. Active Directory Domain Services Deployment](#3-active-directory-domain-services-deployment)
+  - [4. DNS Troubleshooting and Resolution](#4-dns-troubleshooting-and-resolution)
+- [Troubleshooting Summary](#troubleshooting-summary)
+- [Skills Demonstrated](#skills-demonstrated)
+- [Tools and Technologies](#tools-and-technologies)
+- [Project Outcome](#project-outcome)
+- [Known Limitations / Follow-Up Items](#known-limitations--follow-up-items)
+- [Lessons Learned](#lessons-learned)
+- [Project Demonstration](#project-demonstration)
+
+## Lab Network Diagram
+
+
+              ┌─────────────────────────────┐
+              │       Windows 11 Host       │
+              │  (Lab Management Workstation)│
+              │                             │
+              │  IP: 192.168.10.x           │
+              │                             │
+              └──────────────┬──────────────┘
+                             │
+                             │
+              ┌──────────────┴──────────────┐
+              │ Hyper-V Internal Switch     │
+              │ (Isolated Lab Network)      │
+              │ 192.168.10.0/24             │
+              └──────────────┬──────────────┘
+                             │
+                             │
+              ┌──────────────┴──────────────┐
+              │       DC01 (VM)             │
+              │ Windows Server 2022         │
+              │ Domain Controller           │
+              │ ajimohlab.local             │
+              │ IP: 192.168.10.10 /24       │
+              │ DNS: 192.168.10.10          │
+              │ Roles: AD DS · DNS          │
+              └─────────────────────────────┘
+
+
+
 
 ## Project Overview
 
@@ -42,7 +95,6 @@ The project was completed in four main stages:
 3. Active Directory Domain Services installation and domain controller promotion
 4. DNS configuration, testing, and troubleshooting
 
----
 
 ## 1. Hyper-V and Virtual Machine Setup
 
@@ -97,8 +149,7 @@ Windows Server 2022 was selected as the operating system for `DC01`, providing t
 ![Windows Server 2022 Edition Selection](screenshots/01%20hyperv%20setup/13-Windows-Server-2022-Edition-Selection.jpg)
 
 
----
-## Network Configuration and Connectivity Troubleshooting
+  - [2. Network Configuration and Connectivity Troubleshooting](#network-configuration-and-connectivity-troubleshooting)
 
 After creating the Windows Server 2022 virtual machine, I configured the lab network and assigned static IP addresses to establish communication between the Windows host and the domain controller.
 
@@ -219,7 +270,6 @@ correctly, but remains classified as Public rather than Private/Domain. Resolvin
 underlying Group Policy restriction is listed as a follow-up item below.
 
 
----
 
 ## Active Directory Domain Services Deployment
 
