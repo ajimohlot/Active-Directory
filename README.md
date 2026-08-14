@@ -188,7 +188,7 @@ I attempted to change the profile directly:
 Set-NetConnectionProfile -InterfaceAlias "vEthernet (Home Lab-Internal)" -NetworkCategory Private
 ```
 
-*(screenshot: 34B-Network-Profile-Change-Failed)*
+*(screenshots/02 network configuration/34B-Network-Profile-Change-Failed.jpg)*
 
 This failed with a permission-denied error, even when run elevated:
 
@@ -201,7 +201,7 @@ This failed with a permission-denied error, even when run elevated:
 explicitly blocks manual changes to network category classification, overriding even an 
 elevated PowerShell session.
 
-*(screenshot: 35-HomeLab-Network-Profile-Verification)*
+*(screenshots/02 network configuration/35-HomeLab-Network-Profile-Verification.jpg)*
 
 I confirmed via `Get-NetConnectionProfile` that the category remained `Public` after the 
 failed change attempt.
@@ -212,7 +212,7 @@ Rather than modify the Group Policy setting at this stage of the project, I adju
 firewall approach to explicitly target the **Public** profile — the profile the interface 
 was actually running under — instead of assuming it would be Private or Domain.
 
-*(screenshot: 36-Host-Public-ICMP-Rule-Disabled)*
+*(screenshots/02 network configuration/36-Host-Public-ICMP-Rule-Disabled.jpg)*
 
 This is a known limitation of the current setup: the internal lab network functions 
 correctly, but remains classified as Public rather than Private/Domain. Resolving the 
@@ -489,6 +489,13 @@ By the end of the project:
 - Final DNS diagnostic testing completed successfully.
 
 The project strengthened my practical experience in Windows Server administration, Active Directory, networking, DNS, firewall configuration, and structured troubleshooting.
+
+## Known Limitations / Follow-Up Items
+
+- The internal lab network remains classified under the **Public** firewall profile rather 
+  than Private, due to a Group Policy restriction I did not resolve in this phase of the 
+  project. Locating and adjusting the specific `Network List Manager Policies` setting is a 
+  planned next step.
 
 ## Lessons Learned
 
