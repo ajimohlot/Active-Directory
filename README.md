@@ -570,7 +570,7 @@ Covers virtualization verification, Hyper-V configuration, virtual networking, D
 
 Covers static IP configuration, connectivity testing, ICMP failures, Windows Firewall investigation, firewall rule and network profile troubleshooting, and successful bidirectional communication.
 
-▶️ [Watch Part 2 on YouTube](https://youtu.be/MHAAaAqRegg)
+▶️ [Watch Part 2 on YouTube](https://youtu.be/0anyhC7JYyg?si=Oi6XLDyAsd5g_saj)
 
 ### Part 3 – Active Directory Domain Services Deployment
 
