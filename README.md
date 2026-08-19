@@ -453,6 +453,8 @@ The forward lookup also returned:
 
 This confirmed that the DNS server was now being identified correctly and that forward name resolution was functioning without the previous `::1` timeout.
 
+![Final NSLookup Verification](screenshots/04%20dns%20troubleshooting/DNS_17_Final_NSLookup_Verification.jpg)
+
 ### 16. Final DNS Health Verification
 
 Finally, I used `dcdiag` to perform DNS diagnostic testing on the Domain Controller. The DNS tests passed, providing an additional verification that the Domain Controller's DNS services were functioning correctly.
