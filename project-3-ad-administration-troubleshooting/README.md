@@ -71,7 +71,7 @@ ajimohlab.local
     └── Computers
         └── Workstation
 
----
+```
 
 ## Part 1 — OUs, Users, Groups & PowerShell
 
@@ -259,16 +259,19 @@ After configuring the GPO, I signed in to `WIN11-CLIENT01` using an HR domain ac
 
 ```powershell
 gpupdate /force
+```
 
 I then attempted to access Windows Settings to verify that the restriction had been applied.
 
 The policy was also verified from the command line using:
+
 ```powershell
 gpresult /r
+```
 
 The HR GPO appeared under the applied Group Policy Objects, confirming that the workstation had processed the policy successfully.
 
-Scope Verification
+### Scope Verification
 
 To confirm that the restriction was scoped correctly, I also tested the configuration using a user from another department.
 
@@ -383,13 +386,13 @@ The user was able to sign in successfully after the account was unlocked.
 
 ![Account Lockout Policy](screenshots/04-user-access-troubleshooting/02-account-lockout-policy-configured.jpg)
 
-![Account Locked](screenshots/04-user-access-troubleshooting/04-grace-account-locked.jpg)
+![Account Locked](screenshots/04-user-access-troubleshooting/04-grace%20account-locked.jpg)
 
 ![PowerShell Lockout Confirmation](screenshots/04-user-access-troubleshooting/05-powershell-account-lockout-confirmed.jpg)
 
 ![PowerShell Account Unlocked](screenshots/04-user-access-troubleshooting/06-powershell-account-unlocked.jpg)
 
-![Login After Unlock](screenshots/04-user-access-troubleshooting/07-grace-login-after-unlock.jpg)
+![Login After Unlock](screenshots/04-user-access-troubleshooting/07-grace%20login-after-unlock.jpg)
 
 ---
 
