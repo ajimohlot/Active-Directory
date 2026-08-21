@@ -647,3 +647,27 @@ Covers AD DS installation, creation of the `ajimohlab.local` forest, domain cont
 Covers DNS testing and troubleshooting, DNS port 53 connectivity, explicit DNS queries, IPv4 and IPv6 testing, reverse lookup zone and PTR record configuration, forward and reverse resolution, and final DNS health verification.
 
 ▶️ [Watch Part 4 on YouTube](https://youtu.be/aSFSaEkqp-U)
+
+
+---
+
+## Related Active Directory Project
+
+### Active Directory Administration & Troubleshooting Home Lab
+
+Building on the Windows Server and Active Directory environment created in this project, I completed a second hands-on lab focused on day-to-day Active Directory administration and IT support troubleshooting.
+
+The project covers:
+
+- Organisational Unit (OU) design and management
+- Domain user and security group administration
+- PowerShell-based Active Directory administration
+- Windows 11 deployment and domain joining
+- Group Policy configuration and testing
+- Password reset and authentication troubleshooting
+- Account lockout diagnosis and recovery
+- Security group membership and departmental folder access
+- Share and NTFS permissions
+- Disabled user account troubleshooting
+
+➡️ [View the Active Directory Administration & Troubleshooting Project](project-3-ad-administration-troubleshooting/)
