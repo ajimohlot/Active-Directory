@@ -73,7 +73,7 @@ ajimohlab.local
 
 ```
 
-## Part 1 — OUs, Users, Groups & PowerShell
+## Part 1. OUs, Users, Groups & PowerShell
 
 The first stage focused on building a structured Active Directory environment for Londonbridge Solutions Ltd.
 
@@ -125,13 +125,13 @@ The PowerShell-created accounts were verified in Active Directory Users and Comp
 
 ### Video Demonstration
 
-▶️ **Part 1 — Active Directory Home Lab: OUs, Users, Groups & PowerShell**
+▶️ **Part 1 - Active Directory Home Lab: OUs, Users, Groups & PowerShell**
 
 https://youtu.be/0gYJaJS8o2g
 
 ---
 
-## Part 2 — Windows 11 Deployment & Domain Join
+## Part 2. Windows 11 Deployment & Domain Join
 
 The next stage involved configuring a Windows 11 virtual machine as a client workstation and integrating it into the `ajimohlab.local` Active Directory domain.
 
@@ -225,13 +225,13 @@ PowerShell was used to verify the Distinguished Name of `WIN11-CLIENT01`, confir
 
 ### Video Demonstration
 
-▶️ **Part 2 — Active Directory Home Lab: Windows 11 Deployment & Domain Join**
+▶️ **Part 2 - Active Directory Home Lab: Windows 11 Deployment & Domain Join**
 
 https://youtu.be/PrVv_r_26vE
 
 ---
 
-## Part 3 — Group Policy Configuration & Testing
+## Part 3. Group Policy Configuration & Testing
 
 The next stage focused on using Group Policy to centrally manage user settings within the domain.
 
@@ -317,13 +317,13 @@ A Finance user was used to confirm that the restriction was limited to the inten
 
 Video Demonstration
 
-▶️ Part 3 — Active Directory Home Lab: Group Policy & User Account Troubleshooting
+▶️ Part 3 - Active Directory Home Lab: Group Policy & User Account Troubleshooting
 
 https://youtu.be/2KMTo59hupU
 
 ---
 
-## Part 4 — User Access & Account Troubleshooting
+## Part 4. User Access & Account Troubleshooting
 
 The final stage of the project focused on reproducing and resolving common user-support issues in an Active Directory environment.
 
@@ -338,7 +338,7 @@ The scenarios included:
 
 ---
 
-### Scenario 1 — Password Reset
+### Scenario 1: Password Reset
 
 #### Issue
 
@@ -364,7 +364,7 @@ The user successfully completed the password change and authenticated to the dom
 
 ---
 
-### Scenario 2 — Account Lockout
+### Scenario 2: Account Lockout
 
 #### Issue
 
@@ -396,7 +396,7 @@ The user was able to sign in successfully after the account was unlocked.
 
 ---
 
-### Scenario 3 — Security Group Membership & Departmental Folder Access
+### Scenario 3: Security Group Membership & Departmental Folder Access
 
 #### Issue
 
@@ -450,7 +450,7 @@ I also verified write access to confirm that the permissions allowed the user to
 
 ---
 
-### Scenario 4 — Disabled User Account
+### Scenario 4: Disabled User Account
 
 #### Issue
 
@@ -490,7 +490,7 @@ The user was able to authenticate successfully after the account was re-enabled,
 
 ### Video Demonstration
 
-▶️ **Part 4 — Active Directory Home Lab: Group Membership, Folder Access & Account Troubleshooting**
+▶️ **Part 4 - Active Directory Home Lab: Group Membership, Folder Access & Account Troubleshooting**
 
 https://youtu.be/9gbBT981Lso
 
@@ -550,25 +550,25 @@ Some of the main lessons from the lab were:
 
 The complete project is demonstrated in four videos:
 
-### Part 1 — OUs, Users, Groups & PowerShell
+### Part 1 - OUs, Users, Groups & PowerShell
 
 https://youtu.be/0gYJaJS8o2g
 
 Active Directory structure, departmental OUs, user accounts, security groups, group membership, and PowerShell administration.
 
-### Part 2 — Windows 11 Deployment & Domain Join
+### Part 2 - Windows 11 Deployment & Domain Join
 
 https://youtu.be/PrVv_r_26vE
 
 Windows 11 client configuration, DNS verification, domain controller discovery, domain join, domain authentication, and computer object management.
 
-### Part 3 — Group Policy & User Account Troubleshooting
+### Part 3 - Group Policy & User Account Troubleshooting
 
 https://youtu.be/2KMTo59hupU
 
 Group Policy creation, application, testing, scope verification, and user account administration.
 
-### Part 4 — Group Membership, Folder Access & Account Troubleshooting
+### Part 4 - Group Membership, Folder Access & Account Troubleshooting
 
 https://youtu.be/9gbBT981Lso
 
